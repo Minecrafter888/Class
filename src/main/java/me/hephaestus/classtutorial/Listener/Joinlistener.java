@@ -13,27 +13,36 @@ import java.util.UUID;
 
 public class Joinlistener implements Listener {
     Plugin plugin = Classtutorial.getPlugin(Classtutorial.class);
+
     @EventHandler
-    public void onPlayerJoin(PlayerJoinEvent e){
+    public void onPlayerJoin(PlayerJoinEvent e) {
+        // Retrieve the player's UUID and name
         UUID playerUUID = e.getPlayer().getUniqueId();
         String playerName = e.getPlayer().getName();
+
+        // Define the data folder where player data will be stored
         File dataFolder = new File(plugin.getDataFolder(), "playerdata");
+
+        // Check if the data folder exists, create it if it doesn't
         if (!dataFolder.exists()) {
             dataFolder.mkdir();
         }
 
-        File PlayerFile = new File(dataFolder, playerUUID + ".yml");
-        if (!PlayerFile.exists()){
+        // Create a file for the player's data
+        File playerFile = new File(dataFolder, playerUUID + ".yml");
+
+        // If the player's data file doesn't exist, create it and save default data
+        if (!playerFile.exists()) {
             try {
-                PlayerFile.createNewFile();
-                YamlConfiguration playerconfig = YamlConfiguration.loadConfiguration(PlayerFile);
+                playerFile.createNewFile();
+                YamlConfiguration playerConfig = YamlConfiguration.loadConfiguration(playerFile);
+                //default data
+                playerConfig.set("Class", "human");
+                playerConfig.set("Name", playerName);
 
-                playerconfig.set("Class", "human");
-                playerconfig.set("Name", playerName);
+                playerConfig.save(playerFile);
 
-                playerconfig.save(PlayerFile);
-
-            }catch (IOException ev){
+            } catch (IOException ev) {
                 ev.printStackTrace();
             }
         }

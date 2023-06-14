@@ -3,6 +3,10 @@ version: '${project.version}'
 main: me.hephaestus.classtutorial.Classtutorial
 api-version: 1.18
 commands:
+  ClassChecker:
+    description: Checks a player's class type
+    usage: /<command>
+    permission: Classtutorial.ClassChecker
   Class:
     description: Class plugin
     usage: /<command>

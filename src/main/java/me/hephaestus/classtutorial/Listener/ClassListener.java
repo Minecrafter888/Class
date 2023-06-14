@@ -22,7 +22,9 @@ public class ClassListener implements Listener {
     public ClassListener(Plugin plugin) {
         this.plugin = plugin;
     }
+
     private YamlConfiguration loadPlayerConfiguration(UUID playerUUID) {
+        // Load player configuration from the data folder
         File dataFolder = new File(plugin.getDataFolder(), "playerdata");
         File playerFile = new File(dataFolder, playerUUID + ".yml");
 
@@ -32,7 +34,9 @@ public class ClassListener implements Listener {
 
         return null;
     }
+
     private void savePlayerConfiguration(UUID playerUUID, YamlConfiguration config) {
+        // Save player configuration to the data folder
         File dataFolder = new File(plugin.getDataFolder(), "playerdata");
         File playerFile = new File(dataFolder, playerUUID + ".yml");
 
@@ -43,8 +47,8 @@ public class ClassListener implements Listener {
         }
     }
 
-
-    public void items(){
+    public void items() {
+        // Define the class items using utility methods
         ItemStack pick = Pickaxe();
         ItemStack DPS = Sword();
         ItemStack TANK = Shield();
@@ -52,16 +56,12 @@ public class ClassListener implements Listener {
         ItemStack HEALERARROW = Arrow();
     }
 
-
-
     @EventHandler
     public void ClassClick(InventoryClickEvent e) {
-
         Player p = (Player) e.getWhoClicked();
         UUID playerUUID = p.getUniqueId();
 
         YamlConfiguration playerConfig = loadPlayerConfiguration(playerUUID);
-
 
         if (e.getView().getTitle().equalsIgnoreCase(ChatColor.GOLD + "Classes")) {
             if (e.getCurrentItem() == null) {
@@ -127,7 +127,7 @@ public class ClassListener implements Listener {
                     savePlayerConfiguration(playerUUID, playerConfig);
 
                 } else if (e.getCurrentItem().getType() == Material.TRIDENT) {
-                    if (playerClass != null && playerClass.equals("Diver")){
+                    if (playerClass != null && playerClass.equals("Diver")) {
                         p.closeInventory();
                         p.sendMessage("You already are within this class. Please pick another");
                         return;
@@ -139,8 +139,5 @@ public class ClassListener implements Listener {
             }
             e.setCancelled(true);
         }
-
-
-
     }
 }
