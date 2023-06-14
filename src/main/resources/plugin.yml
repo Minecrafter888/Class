@@ -1,0 +1,8 @@
+name: classtutorial
+version: '${project.version}'
+main: me.hephaestus.classtutorial.Classtutorial
+api-version: 1.18
+commands:
+  Class:
+    description: Class plugin
+    usage: /<command>
