@@ -135,6 +135,16 @@ public class ClassListener implements Listener {
 
                     playerConfig.set("Class", "Diver");
                     savePlayerConfiguration(playerUUID, playerConfig);
+                }else if (e.getCurrentItem().getType() == Material.JUKEBOX) {
+                    if (playerClass != null && playerClass.equals("Melodist")) {
+                        // Player has already selected the Melodist class, handle accordingly
+                        p.closeInventory();
+                        p.sendMessage("You already are within this class. Please pick another");
+                        return;
+                    }
+                    // Set the player's class in the configuration and save it
+                    playerConfig.set("Class", "Melodist");
+                    savePlayerConfiguration(playerUUID, playerConfig);
                 }
             }
             e.setCancelled(true);

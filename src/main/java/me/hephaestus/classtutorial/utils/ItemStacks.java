@@ -2,6 +2,7 @@ package me.hephaestus.classtutorial.utils;
 
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
+import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.PotionMeta;
@@ -94,5 +95,16 @@ public class ItemStacks {
         trident.setItemMeta(diver);
 
         return trident;
+    }
+    public static ItemStack Stick(){
+        ItemStack stick = new ItemStack(Material.STICK);
+        ItemMeta stickmeta = stick.getItemMeta();
+        stickmeta.setUnbreakable(true);
+        stickmeta.setDisplayName("Rhythm Rod");
+        stickmeta.addEnchant(Enchantment.LURE, 1, false);
+        stickmeta.hasItemFlag(ItemFlag.HIDE_ENCHANTS);
+        stick.setItemMeta(stickmeta);
+
+        return stick;
     }
 }

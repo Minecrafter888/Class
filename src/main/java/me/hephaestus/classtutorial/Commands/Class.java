@@ -13,7 +13,9 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.plugin.Plugin;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class Class implements CommandExecutor {
@@ -75,6 +77,17 @@ public class Class implements CommandExecutor {
             Divermeta.setDisplayName(ChatColor.BLUE + "Diver Class");
             diver.setItemMeta(Divermeta);
             invent.setItem(4, diver);
+
+            // Create an item stack representing the Melodist class
+            ItemStack Melodist = new ItemStack(Material.JUKEBOX, 1);
+            ItemMeta Melodistmeta = Melodist.getItemMeta();
+            Melodistmeta.setDisplayName(ChatColor.LIGHT_PURPLE + "Melodist");
+            List<String> loremelodist = new ArrayList<>();
+            loremelodist.add("Gives you buffs depending on interaction");
+            Melodistmeta.setLore(loremelodist);
+            Melodist.setItemMeta(Melodistmeta);
+
+            invent.setItem(5, Melodist);
 
             // Open the inventory for the player
             p.openInventory(invent);

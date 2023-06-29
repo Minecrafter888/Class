@@ -4,6 +4,7 @@ import me.hephaestus.classtutorial.Commands.Class;
 import me.hephaestus.classtutorial.Listener.ClassListener;
 import me.hephaestus.classtutorial.Listener.Joinlistener;
 import me.hephaestus.classtutorial.Listener.MoveListener;
+import me.hephaestus.classtutorial.Listener.MusicAbility.harmonoushealing;
 import org.bukkit.permissions.Permission;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -25,6 +26,8 @@ public final class Classtutorial extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new Joinlistener(), this);
         getServer().getPluginManager().registerEvents(new MoveListener(), this);
         getServer().getPluginManager().registerEvents(new ClassListener(this), this);
+        getServer().getPluginManager().registerEvents(new harmonoushealing(this), this);
+
 
         // Get the PluginManager instance
         PluginManager pluginManager = getServer().getPluginManager();
